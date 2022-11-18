@@ -43,6 +43,12 @@ Window {
             sourceComponent: DialogTitleBar {
                 enableInWindowBlendBlur: true
                 icon.name: control.icon
+                Component.onCompleted: {
+                    Window.window.closing.connect(function(close) {
+                        close.accepted = false
+                        Window.window.hide()
+                    })
+                }
             }
         }
 
