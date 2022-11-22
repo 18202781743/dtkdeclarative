@@ -5,6 +5,7 @@
 import QtQuick 2.0
 import QtQml 2.11
 import org.deepin.dtk 1.0
+import QtQuick.Controls 2.4 as C2
 import ".."
 
 Column {
@@ -27,6 +28,7 @@ Column {
             x: 0; y: 0
             source: "qrc:/assets/menu/rightclick.svg"
             Menu {
+                width: 100
                 MenuItem { text: qsTr("打开") }
                 MenuItem { text: qsTr("在新窗口打开") }
                 MenuItem { text: qsTr("在新标签中打开") }

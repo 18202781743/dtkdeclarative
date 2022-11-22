@@ -63,6 +63,7 @@ public:
         if (Q_UNLIKELY(!i))
             return;
 
+
         const QPointF newPos = i->q_func()->mapToItem(i->sourceItem.data(), QPointF(0, 0));
         if (!i->updateOffset(newPos))
             return;
@@ -105,7 +106,7 @@ void DQuickItemViewportPrivate::initSourceItem(QQuickItem *old, QQuickItem *item
 
     if (item) {
         QQuickItemPrivate *sd = QQuickItemPrivate::get(item);
-        sd->addItemChangeListener(this, QQuickItemPrivate::Geometry);
+        sd->addItemChangeListener(this, QQuickItemPrivate::Geometry | QQuickItemPrivate::Visibility);
         sd->refFromEffectItem(hideSource);
     }
 }
@@ -118,6 +119,14 @@ void DQuickItemViewportPrivate::itemGeometryChanged(QQuickItem *, QQuickGeometry
         markDirtys(DirtySourceSizeRatio | DirtyMaskOffset);
         q->update();
     }
+}
+
+void DQuickItemViewportPrivate::itemVisibilityChanged(QQuickItem *item)
+{
+    D_Q(DQuickItemViewport);
+//    markDirtys(DirtyContentNode);
+//    q->update();
+//    qDebug() << "************" << Q_FUNC_INFO << item;
 }
 
 void DQuickItemViewportPrivate::setPreprocessNode(PreprocessNode *newNode)
@@ -434,10 +443,11 @@ QSGNode *DQuickItemViewport::updatePaintNode(QSGNode *old, QQuickItem::UpdatePai
                 }
             };
 
-            if (tp)
+            if (tp) {
                 d->textureChangedConnection = QObject::connect(tp,
                                                                &QSGTextureProvider::textureChanged,
                                                                this, onTextureChanged, Qt::DirectConnection);
+            }
         }
     }
 
@@ -497,6 +507,8 @@ QSGNode *DQuickItemViewport::updatePaintNode(QSGNode *old, QQuickItem::UpdatePai
         softwareNode->setRadius(d->radius);
         d->updateSourceRect(softwareNode);
     }
+
+//    qDebug() << "*******" << Q_FUNC_INFO;
 
     return preNode;
 }

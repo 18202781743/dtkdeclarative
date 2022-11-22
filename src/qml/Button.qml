@@ -19,11 +19,17 @@ T.Button {
     leftPadding: DS.Style.button.hPadding
     rightPadding: DS.Style.button.hPadding
     spacing: DS.Style.control.spacing
-    opacity: D.ColorSelector.controlState === D.DTK.DisabledState ? 0.4 : 1
+//    opacity: {
+//        console.log("********", D.ColorSelector.controlState === D.DTK.DisabledState ? 0.4 : 1)
+//        return D.ColorSelector.controlState === D.DTK.DisabledState ? 0.4 : 1
+//    }
     D.DciIcon.mode: D.ColorSelector.controlState
     D.DciIcon.theme: D.ColorSelector.controlTheme
     D.DciIcon.palette: D.DTK.makeIconPalette(palette)
-    palette.windowText: D.ColorSelector.textColor
+    palette.windowText: {
+        console.log("*****", D.ColorSelector.controlState, D.ColorSelector.textColor)
+        return D.ColorSelector.textColor
+    }
     icon {
         width: DS.Style.button.iconSize
         height: DS.Style.button.iconSize

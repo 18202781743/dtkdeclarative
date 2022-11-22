@@ -9,7 +9,7 @@ import org.deepin.dtk.impl 1.0 as D
 import org.deepin.dtk.style 1.0 as DS
 
 Window {
-    id: control
+    id: control; objectName: "dialogwindow"
 
     width: implicitWidth
     height: implicitHeight
@@ -24,6 +24,7 @@ Window {
     D.DWindow.enableBlurWindow: true
     flags: Qt.Dialog | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
     D.ColorSelector.family: D.Palette.CrystalColor
+//    D.ColorSelector.family: D.Palette.CommonColor
     color: active ? D.DTK.palette.window : D.DTK.inactivePalette.window
 
     readonly property int maxContentHeight: height - titleBar.height
@@ -59,5 +60,17 @@ Window {
             Layout.leftMargin: DS.Style.dialogWindow.contentHMargin
             Layout.rightMargin: DS.Style.dialogWindow.contentHMargin
         }
+    }
+//    onClosing: {
+//        console.log("********ac888888ndow")
+//        close.accepted = false
+//        control.hide()
+//    }
+
+    onActiveChanged: {
+        console.log("********active window", control.active, control.visible)
+    }
+    onVisibilityChanged: {
+        console.log("********visible window", control.active, control.visible)
     }
 }

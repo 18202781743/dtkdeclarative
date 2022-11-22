@@ -13,7 +13,7 @@ Control {
     default property alias buttons: btnGroup.buttons
     property alias group: btnGroup
 
-    D.ColorSelector.hovered: false
+//    D.ColorSelector.hovered: false
     padding: DS.Style.buttonBox.padding
 
     ButtonGroup {

@@ -23,23 +23,34 @@ ColumnLayout {
         Layout.fillWidth: true
     }
 
-    RowLayout {
+    Row {
         id: layout
+        property url url
+
+//        Layout.preferredWidth: parent.width
+//        Layout.fillWidth: true
+//        Layout.fillHeight: true
+        Layout.preferredHeight: parent.height
         Layout.fillWidth: true
         Layout.fillHeight: true
 
         ScrollView {
             id: codePreview
-            Layout.fillHeight:  true
-            Layout.preferredWidth: parent.width * 0.6
+//            Layout.fillHeight:  true
+//            Layout.preferredWidth: layout.implicitWidth * 0.6
+//            Layout.preferredWidth: parent.width * 0.6
+//            Layout.preferredWidth: guest.width * 0.6
+            width: layout.parent.width * 0.6
+            height: parent.height
             clip: true
             Item {id: guest;}
         }
 
         ScrollView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
+//            Layout.fillWidth: true
+//            Layout.fillHeight: true
+            width: layout.parent.width * 0.4
+            height: parent.height
             TextArea {
                 id: edit
 

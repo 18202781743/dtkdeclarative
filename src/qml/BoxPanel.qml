@@ -36,7 +36,7 @@ Item {
         id: backgroundRect
         property alias color1: control.color1
         property alias color2: control.color2
-        D.ColorSelector.hovered: false
+//        D.ColorSelector.hovered: false
 
         Gradient {
             id: backgroundGradient

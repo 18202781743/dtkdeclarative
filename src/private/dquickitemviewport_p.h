@@ -177,6 +177,8 @@ public:
 
     void itemGeometryChanged(QQuickItem *item, QQuickGeometryChange data, const QRectF &) override;
 
+    virtual void itemVisibilityChanged(QQuickItem *item) override;
+
     inline const QVector2D &getSoureSizeRatio() {
         if (Q_LIKELY(!dirtyState.testFlag(DirtySourceSizeRatio))) {
             return soureSizeRatio;

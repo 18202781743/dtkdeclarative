@@ -93,10 +93,13 @@ Control {
                 property bool hasWindowFlag/*: (Window.window.flags & Qt.WindowCloseButtonHint)*/
                 Component.onCompleted: hasWindowFlag = (Window.window.flags & Qt.WindowCloseButtonHint)
 
-                visible: hasWindowFlag && __dwindow.enabled
+//                visible: hasWindowFlag && __dwindow.enabled
 
                 enabled: __dwindow.motifFunctions & D.WindowManagerHelper.FUNC_CLOSE
-                onClicked: Window.window.close()
+                onClicked: {
+
+                    console.log("*****************", Window.window.close())
+                }
             }
         }
 

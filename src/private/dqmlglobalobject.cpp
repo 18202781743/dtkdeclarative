@@ -47,6 +47,11 @@ bool DColor::isTypedColor() const noexcept
     return data.color.type >= VARIANT_COLOR_TYPE_OFFSET;
 }
 
+DColor::Type DColor::colorType() const
+{
+    return isTypedColor() ? static_cast<DColor::Type>(data.color.type - VARIANT_COLOR_TYPE_OFFSET) : DColor::Invalid;
+}
+
 static inline QPalette::ColorRole toPaletteColorRole(quint8 type)
 {
     auto color = static_cast<DColor::Type>(type - VARIANT_COLOR_TYPE_OFFSET);
@@ -75,14 +80,16 @@ bool DColor::operator!=(const DColor &c) const noexcept
 QColor DColor::toColor(const QPalette &palette) const
 {
     QColor color = isTypedColor() ? palette.color(toPaletteColorRole(data.color.type)) : data.color.value;
-    return DGuiApplicationHelper::adjustColor(color, data.hue, data.saturation, data.lightness, 0, 0, 0, data.opacity);
+    return color;
+//    return DGuiApplicationHelper::adjustColor(color, data.hue, data.saturation, data.lightness, 0, 0, 0, data.opacity);
 }
 
 QColor DColor::color() const
 {
     Q_ASSERT(!isTypedColor());
-    return DGuiApplicationHelper::adjustColor(data.color.value, data.hue, data.saturation, data.lightness,
-                                              0, 0, 0, data.opacity);
+    return data.color.value;
+//    return DGuiApplicationHelper::adjustColor(data.color.value, data.hue, data.saturation, data.lightness,
+//                                              0, 0, 0, data.opacity);
 }
 
 DColor DColor::hue(qint8 floatValue) const
@@ -242,6 +249,11 @@ QPalette DQMLGlobalObject::inactivePalette() const
     D_DC(DQMLGlobalObject);
     const_cast<DQMLGlobalObjectPrivate*>(d)->ensurePalette();
     return d->inactivePalette;
+}
+
+QString DQMLGlobalObject::test(const DColor &color)
+{
+
 }
 
 QColor DQMLGlobalObject::blendColor(const QColor &substrate, const QColor &superstratum)

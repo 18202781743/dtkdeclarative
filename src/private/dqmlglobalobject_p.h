@@ -49,6 +49,7 @@ public:
 
     [[nodiscard]] bool isValid() const noexcept;
     [[nodiscard]] bool isTypedColor() const noexcept;
+    Type colorType() const;
 
     bool operator==(const DColor &c) const noexcept;
     bool operator!=(const DColor &c) const noexcept;
@@ -160,6 +161,7 @@ public:
     QPalette palette() const;
     QPalette inactivePalette() const;
 
+    Q_INVOKABLE QString test(const DColor &color);
     Q_INVOKABLE QColor blendColor(const QColor &substrate, const QColor &superstratum);
     Q_INVOKABLE DTK_QUICK_NAMESPACE::DColor makeColor(DTK_QUICK_NAMESPACE::DColor::Type type);
     Q_INVOKABLE DTK_QUICK_NAMESPACE::DColor makeColor(const QColor &color);

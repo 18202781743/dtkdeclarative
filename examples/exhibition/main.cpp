@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 //    QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
     engine.addImportPath(CHAMELEON_PATH);
     engine.rootContext()->setContextProperty("examplesFiles",
-                                             QDir(":/examples").entryList({"*.qml"}));
+                                             QDir(":/examples").entryList({"Dialog*.qml"}));
     engine.rootContext()->setContextProperty("globalObject", new Object());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())

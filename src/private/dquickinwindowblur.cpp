@@ -154,6 +154,7 @@ QSGNode *DQuickInWindowBlur::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeDa
     blurNode->setTexture(node->texture());
     blurNode->setFollowMatrixForSource(true);
     blurNode->setOffscreen(m_offscreen);
+//    qDebug() << "*******" << Q_FUNC_INFO;
 
     return node;
 }
